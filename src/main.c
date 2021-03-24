@@ -63,7 +63,7 @@ int main(int argc, char** argv){
     bmask = 0x0000ff00;
     amask = 0x000000ff;
     surface = SDL_CreateRGBSurface(0, 1280, 720, 32, rmask, gmask, bmask, amask);
-
+    //test
 
     SDL_Event evt;
 
