@@ -9,7 +9,7 @@
             "command": "gcc",
             "args": [
                 "./src/main.c",
-                //"./src/video.c",
+                "./src/drawing.c",
                 "-o./build/swrenderer.exe",
                 "-L./libs",
                 "-I./include",
