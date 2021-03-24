@@ -10,6 +10,7 @@
             "args": [
                 "./src/main.c",
                 "./src/drawing.c",
+                "./src/geometry.c",
                 "-o./build/swrenderer.exe",
                 "-L./libs",
                 "-I./include",

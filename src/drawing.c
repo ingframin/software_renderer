@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <SDL2/SDL.h>
-
+#include "geometry.h"
 
 
 void drawLine(SDL_Surface* surface,int x0, int y0, int x1, int y1, Color color){
