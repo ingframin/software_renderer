@@ -1,5 +1,6 @@
 #include "geometry.h"
 #include <math.h>
+#include <stdbool.h>
 
 Barycoords barycentric(Vector2 A, Vector2 B, Vector2 C, Vector2 P)
 {
@@ -11,6 +12,11 @@ Barycoords barycentric(Vector2 A, Vector2 B, Vector2 C, Vector2 P)
 	bc.alpha = 1 - bc.beta - bc.gamma;
 
 	return bc;
+}
+
+bool inside(Vector2 P, Triangle2 T){
+	Barycoords bc = barycentric(T.A,T.B,T.C,P);
+	return (bc.alpha > 0)&&(bc.beta > 0)&&(bc.gamma > 0);
 }
 
 Vector2 v2_sum(Vector2 v1, Vector2 v2){

@@ -47,3 +47,44 @@ void drawLine(SDL_Surface* surface,int x0, int y0, int x1, int y1, Color color){
     SDL_UnlockSurface(surface);
 
 }
+
+void drawTriangle(SDL_Surface* surface,Triangle2 T, Color color){
+    drawLine(surface,T.A.x,T.A.y,T.B.x,T.B.y,color);
+    drawLine(surface,T.B.x,T.B.y,T.C.x,T.C.y,color);
+    drawLine(surface,T.C.x,T.C.y,T.A.x,T.A.y,color);
+    
+    double minY = T.A.y;
+    if(T.B.y < minY) minY = T.B.y;
+    if(T.C.y < minY) minY = T.C.y;
+    if(minY < 0) minY = 0;
+
+    double minX = T.A.x;
+    if(T.B.x < minX) minX = T.B.x;
+    if(T.C.x < minX) minX = T.C.x;
+    if(minX < 0) minX = 0;
+
+    double maxY = T.A.y;
+    if(T.B.y > maxY) maxY = T.B.y;
+    if(T.C.y > maxY) maxY = T.C.y;
+    if(maxY > surface->h) maxY = surface->h;
+
+    double maxX = T.A.x;
+    if(T.B.x > maxX) maxX = T.B.x;
+    if(T.C.x > maxX) maxX = T.C.x;
+    if(maxX > surface->w) maxX = surface->w;
+
+    SDL_LockSurface(surface);
+    Color* pixels = surface->pixels;
+    for(int x = minX; x < maxX; x+=1){
+        for(int y = minY; y < maxY; y+=1){
+            Vector2 p = {x,y};
+
+            if(inside(p,T)){
+                pixels[(x+(surface->h-y)*surface->w)] = color;
+            }
+        }    
+    }
+    SDL_UnlockSurface(surface);
+
+    
+}

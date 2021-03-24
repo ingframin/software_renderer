@@ -4,11 +4,16 @@
 #include <stdint.h>
 #include <math.h>
 #include "SDL2/SDL.h"
+#include "geometry.h"
 #include "drawing.h"
 
 bool running = true;
 SDL_Window* wnd;
 SDL_Surface* screen;
+Vector2 v1 = {100.0,100.0};
+Vector2 v2 = {300.0,10.0};
+Vector2 v3 = {500.0,600.0};
+
 
 
 int main(int argc, char** argv){
@@ -36,6 +41,11 @@ int main(int argc, char** argv){
 
     SDL_Event evt;
 
+    Triangle2 triangle;
+    triangle.A = v1;
+    triangle.B = v2;
+    triangle.C = v3;
+
     while(running){
          while(SDL_PollEvent(&evt)){
             
@@ -46,7 +56,7 @@ int main(int argc, char** argv){
 
         drawLine(surface,20, 20, 180, 200,red);
         drawLine(surface,20, 200, 180, 100,green);
-
+        drawTriangle(surface,triangle,green);
         SDL_BlitSurface(surface,NULL,screen,NULL);
     
         SDL_UpdateWindowSurface(wnd);

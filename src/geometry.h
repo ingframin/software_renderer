@@ -1,5 +1,6 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
+#include <stdbool.h>
 
 typedef struct vec2
 {
@@ -59,5 +60,6 @@ Vector3 v2_cross(Vector2 v1, Vector2 v2);
 Vector2 v2_norm(Vector2 v1);
 double  v2_mod(Vector2 v1);
 
-
+Barycoords barycentric(Vector2 A, Vector2 B, Vector2 C, Vector2 P);
+bool inside(Vector2 P, Triangle2 T);
 #endif
